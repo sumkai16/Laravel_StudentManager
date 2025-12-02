@@ -12,6 +12,7 @@
         <th>Subject Name</th>
         <th>Description</th>
         <th>Year Level</th>
+        <th>Actions</th>
     </tr>
     @foreach ($subjects as $subject)
     <tr>
@@ -21,11 +22,11 @@
         <td>{{ $subject->year_level }}</td>
         <td>
             <a href="{{ route('subjects.edit', $subject->id) }}">Edit</a>
-
-            <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST">
+            <a href="{{ route('subjects.show', $subject->id) }}">View</a>
+            <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button type="submit" onclick="return confirm('Delete this subject?')">Delete</button>
             </form>
         </td>
     </tr>

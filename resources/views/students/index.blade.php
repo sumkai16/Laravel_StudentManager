@@ -23,12 +23,12 @@
         <td>{{ $student->course }}</td>
         <td>{{ $student->year_level }}</td>
         <td>
-            <a href="{{ route('students.edit', $student->id) }}">Edit</a>
-
-            <form action="{{ route('students.destroy', $student->id) }}" method="POST">
+            <a href="{{ route('students.show', $student->id) }}">View</a> |
+            <a href="{{ route('students.edit', $student->id) }}">Edit</a> |
+            <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button type="submit" onclick="return confirm('Delete this student?')">Delete</button>
             </form>
         </td>
     </tr>
