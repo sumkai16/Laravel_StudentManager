@@ -29,7 +29,14 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        \App\Models\Subject::create($request->all());
+        $validated = $request->validate([
+            'subject_code' => 'required|string|max:255',
+            'subject_name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'year_level' => 'required|string|max:255',
+            'units' => 'required|integer|min:1',
+        ]);
+        \App\Models\Subject::create($validated);
         return redirect()->route('subjects.index');
     }
 
@@ -38,7 +45,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        //
+        return view('subjects.show', compact('subject'));
     }
 
     /**
@@ -60,6 +67,7 @@ class SubjectController extends Controller
             'subject_name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'year_level' => 'required|string|max:255',
+            'units' => 'required|integer|min:1',
         ]);
         $subject->update($validated);
         return redirect()->route('subjects.index')

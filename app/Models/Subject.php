@@ -11,8 +11,14 @@ class Subject extends Model
         'subject_name',
         'description',
         'year_level',
+        'units'
     ];
     public function student(){
         return $this->belongsTo(Student::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'student_subject')
+                    ->withTimestamps();
     }
 }

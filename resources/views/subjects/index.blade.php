@@ -12,6 +12,7 @@
         <th>Subject Name</th>
         <th>Description</th>
         <th>Year Level</th>
+        <th>Units</th>
         <th>Actions</th>
     </tr>
     @foreach ($subjects as $subject)
@@ -20,6 +21,7 @@
         <td>{{ $subject->subject_name }}</td>
         <td>{{ $subject->description }}</td>
         <td>{{ $subject->year_level }}</td>
+        <td>{{ $subject->units }}</td>
         <td>
             <a href="{{ route('subjects.edit', $subject->id) }}">Edit</a>
             <a href="{{ route('subjects.show', $subject->id) }}">View</a>

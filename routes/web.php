@@ -18,6 +18,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('students', \App\Http\Controllers\StudentController::class);
     Route::resource('subjects', \App\Http\Controllers\SubjectController::class);
+    Route::resource('students', \App\Http\Controllers\StudentController::class);
+    // enroll/unenroll routes
+    Route::post('/students/{student}/enroll', [\App\Http\Controllers\EnrollmentController::class, 'store'])
+         ->name('students.enroll');
+    Route::delete('/students/{student}/unenroll/{subject}', [\App\Http\Controllers\EnrollmentController::class, 'destroy'])
+         ->name('students.unenroll');
 });
 
 require __DIR__.'/auth.php';

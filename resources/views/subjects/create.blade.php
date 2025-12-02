@@ -29,7 +29,7 @@
                         {{-- First Name --}}
                         <div class="mb-4">
                             <label for="firstname" class="block text-gray-700 text-sm font-bold mb-2">
-                                First Name <span class="text-red-500">*</span>
+                                Subject Code <span class="text-red-500">*</span>
                             </label>
                             <input type="text" 
                                    name="subject_code" 
@@ -73,13 +73,27 @@
                                 <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
-                        {{-- Year Level --}}
+                        {{-- Units --}}
                         <div class="mb-6">
+                            <label for="units" class="block text-gray-700 text-sm font-bold mb-2">
+                                Units <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number"
+                                   name="units"
+                                   id="units"
+                                   value="{{ old('units') }}"
+                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('units') border-red-500 @enderror"
+                                   placeholder="Enter units">
+                            @error('units')
+                                <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        {{-- Year Level --}}
+                        <div class="mb-4">
                             <label for="year_level" class="block text-gray-700 text-sm font-bold mb-2">
                                 Year Level <span class="text-red-500">*</span>
                             </label>
-                            <select name="year_level" 
+                            <select name="year_level"
                                     id="year_level"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('year_level') border-red-500 @enderror">
                                 <option value="">Select Year Level</option>
@@ -93,6 +107,7 @@
                             @enderror
                         </div>
 
+                        
                         {{-- Buttons --}}
                         <div class="flex items-center justify-between">
                             <button type="submit" 

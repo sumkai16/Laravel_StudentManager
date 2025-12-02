@@ -35,9 +35,14 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Student $student)
     {
-        //
+        $student->load('subjects');
+        $availableSubjects = \App\Models\Subject::whereNotIn(
+            'id',
+            $student->subjects->pluck('id')
+        )->get();
+        return view('students.show', compact('student', 'availableSubjects'));
     }
 
     /**

@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->string('subject_code');
             $table->string('subject_name');
             $table->string('description');
             $table->string('year_level');
+            $table->integer('units');
             $table->timestamps();
         });
+
+        
     }
 
     /**
@@ -27,6 +29,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('subjects', function (Blueprint $table) {
+        $table->unsignedBigInteger('student_id')->nullable();
+        });
         Schema::dropIfExists('subjects');
     }
 };

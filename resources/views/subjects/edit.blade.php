@@ -73,7 +73,21 @@
                                 <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
+                        {{-- Units --}}
+                        <div class="mb-6">
+                            <label for="units" class="block text-gray-700 text-sm font-bold mb-2">
+                                Units <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number"
+                                   name="units"
+                                   id="units"
+                                   value="{{ old('units', $subject->units) }}"
+                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('units') border-red-500 @enderror"
+                                   placeholder="Enter units">
+                            @error('units')
+                                <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
                         {{-- Year Level --}}
                         <div class="mb-6">
                             <label for="year_level" class="block text-gray-700 text-sm font-bold mb-2">
@@ -92,7 +106,7 @@
                                 <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
+                        
                         {{-- Buttons --}}
                         <div class="flex items-center justify-between">
                             <button type="submit" 
