@@ -70,6 +70,11 @@
 
                     <div class="mb-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">Enrolled Subjects</h3>
+                        <p>
+                            <a href="{{ route('students.enrollment.edit', $student) }} " class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-md padding-2 transition duration-150 ease-in-out margin-bottom-4">
+                                Edit Enrollment
+                            </a>
+                        </p>
 
                         @if(session('success'))
                           <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">

@@ -36,4 +36,23 @@ class EnrollmentController extends Controller
         return redirect()->route('students.show', $student)
                          ->with('success', 'Subject removed from student.');
     }
+    //edit
+    public function edit(Student $student)
+    {
+        $student->load('subjects');
+        $subjects = Subject::all();
+        return view('students.edit-enrollment', compact('student', 'subjects'));
+    }
+    //update
+    public function update(Request $request, Student $student)
+    {
+        $request->validate([
+            'subjects' => 'array',
+        ]);
+
+        $student->subjects()->sync($request->subjects ?? []);
+
+        return redirect()->route('students.show', $student)
+                         ->with('success', 'Enrollment updated successfully.');
+    }
 }

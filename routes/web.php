@@ -24,6 +24,11 @@ Route::middleware('auth')->group(function () {
          ->name('students.enroll');
     Route::delete('/students/{student}/unenroll/{subject}', [\App\Http\Controllers\EnrollmentController::class, 'destroy'])
          ->name('students.unenroll');
+    Route::get('/students/{student}/edit-enrollment',[\App\Http\Controllers\EnrollmentController::class, 'edit'])
+         ->name('students.enrollment.edit');
+    Route::put('/students/{student}/edit-enrollment',[\App\Http\Controllers\EnrollmentController::class, 'update'])
+         ->name('students.enrollment.update');
+        
 });
 
 require __DIR__.'/auth.php';
