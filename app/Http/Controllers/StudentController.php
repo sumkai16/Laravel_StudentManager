@@ -82,4 +82,28 @@ class StudentController extends Controller
         return redirect()->route('students.index')
                             ->with('success', 'Student deleted successfully.');
     }
+
+    /**
+     * Display the student dashboard.
+     */
+    public function dashboard()
+    {
+        // Assuming the authenticated user is linked to a student record
+        // You may need to adjust this based on your user-student relationship
+        $user = auth()->user();
+        // For now, return a simple view - you can customize this
+        return view('student.dashboard');
+    }
+
+    /**
+     * Display the student's enrolled subjects.
+     */
+    public function subjects()
+    {
+        // Assuming the authenticated user is linked to a student record
+        // You may need to adjust this based on your user-student relationship
+        $user = auth()->user();
+        // For now, return a simple view - you can customize this
+        return view('student.subjects');
+    }
 }

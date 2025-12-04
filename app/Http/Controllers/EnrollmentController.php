@@ -55,4 +55,19 @@ class EnrollmentController extends Controller
         return redirect()->route('students.show', $student)
                          ->with('success', 'Enrollment updated successfully.');
     }
+    public function manage($subject_id){
+        $subject = Subject::findOrFail($subject_id);
+        $enrolled = $subject->students;
+        return view('enrollments.manage', compact('subject', 'enrolled'));
+    }
+
+    public function remove($subject_id, $student_id){
+        $subject = Subject::findOrFail($subject_id);
+        $subject->students()->detach($student_id);
+        return back()->with('success', 'Student removed from subject.');
+    }
+    public function index(){
+        $students = Student::with('subjects')->get();
+        return view('enrollments.index', compact('students'));
+    }
 }
