@@ -70,4 +70,19 @@ class EnrollmentController extends Controller
         $students = Student::with('subjects')->get();
         return view('enrollments.index', compact('students'));
     }
+
+    public function create(){
+        $user = auth()->user();
+        $student = Student::where('user_id', $user->id)->first();
+        if (!$student) {
+            return redirect()->route('student.dashboard')->with('error', 'Student record not found.');
+        }
+        $availableSubjects = Subject::whereNotIn('id', $student->subjects->pluck('id'))->get();
+        return view('enrollments.create', compact('availableSubjects'));
+    }
+
+    public function pending(){
+        $students = Student::with('subjects')->get();
+        return view('enrollments.index', compact('students'));
+    }
 }

@@ -103,7 +103,9 @@ class StudentController extends Controller
         // Assuming the authenticated user is linked to a student record
         // You may need to adjust this based on your user-student relationship
         $user = auth()->user();
-        // For now, return a simple view - you can customize this
-        return view('student.subjects');
+        // Find the student record associated with the user (assuming user_id in students table)
+        $student = Student::where('user_id', $user->id)->first();
+        $subjects = $student ? $student->subjects : collect();
+        return view('student.subjects', compact('subjects'));
     }
 }
